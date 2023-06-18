@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Typography, Box, AppBar, Button, ThemeProvider, createTheme, Clock } from '@mui/material';
+import { Container, Typography, Box, Button, ThemeProvider, createTheme } from '@mui/material';
 import { styled } from '@mui/system';
 import GameBoard from '../GameBoard/GameBoard';
-import { arrayOf8Cards, arrayOf12Cards } from '../../utils/constants';
+import { arrayOf12Cards } from '../../utils/constants';
 import Timer from '../Timer/Timer';
 
 
