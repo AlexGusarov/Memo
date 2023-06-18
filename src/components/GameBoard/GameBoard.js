@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Card from '../Card/Card';
 import generateCards from '../../utils/generateCards';
 
-function GameBoard({ cards, onGameFinish, onFirstClick, shouldReset }) {
+function GameBoard({ cards, onGameFinish }) {
   const [openCards, setOpenCards] = useState([]);
   const [cardsState, setCardsState] = useState([]);
   const [shouldClose, setShouldClose] = useState(false);
@@ -12,11 +12,6 @@ function GameBoard({ cards, onGameFinish, onFirstClick, shouldReset }) {
     setCardsState(cards);
   }, [cards]);
 
-  useEffect(() => {
-    if (shouldReset) {
-      setCardsState(cards.map(card => ({ ...card, isOpen: false })));
-    }
-  }, [shouldReset]);
 
   useEffect(() => {
     if (shouldClose) {
@@ -43,9 +38,9 @@ function GameBoard({ cards, onGameFinish, onFirstClick, shouldReset }) {
     }
   }, [cardsState, onGameFinish]);
 
+
   const handleCardClick = (card) => {
     if (openCards.length < 2 && !card.isOpen) {
-      onFirstClick();
       const newOpenCards = [...openCards, card];
       setOpenCards(newOpenCards);
       setCardsState((prevCards) =>

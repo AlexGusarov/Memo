@@ -4,7 +4,6 @@ import { styled } from '@mui/system';
 import GameBoard from '../GameBoard/GameBoard';
 import { arrayOf8Cards, arrayOf12Cards } from '../../utils/constants';
 import Timer from '../Timer/Timer';
-import Logo from '../Logo';
 
 
 const theme = createTheme({
@@ -28,18 +27,32 @@ function App() {
   const [isGameStarted, setIsGameStarted] = React.useState(false);
   const [isGameFinished, setIsGameFinished] = React.useState(false);
   const [isGameRunning, setIsGameRunning] = React.useState(false);
-  const [hasFirstClickOccurred, setHasFirstClickOccurred] = React.useState(false);
   const [timerValue, setTimerValue] = React.useState(0);
   const [finalTime, setFinalTime] = React.useState(0);
   const [cards, setCards] = React.useState(arrayOf12Cards);
-  const [shouldReset, setShouldReset] = React.useState(false);
+
+  const StartButton = styled(Button)({
+    fontSize: '1.1rem',
+    padding: '1rem 2rem',
+  });
+
+  const shuffleCards = (cards) => {
+    return [...cards].sort(() => Math.random() - 0.5);
+  };
 
   const handleGameStart = () => {
     setIsGameStarted(true);
     setIsGameFinished(false);
     setIsGameRunning(true);
-    setCards(prevCards => [...prevCards].sort(() => Math.random() - 0.5));
+    setCards(shuffleCards(cards));
   };
+
+  const handleGameRestart = () => {
+    setTimerValue(0);
+    setCards(shuffleCards(cards));
+    handleGameStart();
+  };
+
 
   const handleGameFinish = () => {
     setIsGameFinished(true);
@@ -47,32 +60,11 @@ function App() {
     setFinalTime(timerValue);
   };
 
-  const handleTimerReset = () => {
-    setShouldReset(prev => !prev);
-    setTimerValue(0);
-    setIsGameRunning(false);
-  };
 
-  const handleGameRestart = () => {
-    setShouldReset(prev => !prev);
+  const handleExitGame = () => {
     setTimerValue(0);
-    setHasFirstClickOccurred(false);
     setIsGameRunning(false);
     setIsGameStarted(false);
-    setCards(prevCards => [...prevCards].sort(() => Math.random() - 0.5));
-  };
-
-
-  const handleTimerStop = (value) => {
-    setTimerValue(value);
-    setIsGameRunning(false);
-  };
-
-  const handleFirstClick = () => {
-    if (!hasFirstClickOccurred) {
-      setHasFirstClickOccurred(true);
-      Promise.resolve().then(handleGameStart);
-    }
   };
 
   return (
@@ -82,10 +74,10 @@ function App() {
           <Typography variant="h1">Memo</Typography>
         </Box>
         {!isGameStarted && (
-          <Box display="flex" justifyContent="center" mt={2}>
-            <Button variant="contained" size="large" onClick={handleGameStart}>
+          <Box display="flex" justifyContent="center" mt={10}>
+            <StartButton variant="contained" size="large" onClick={handleGameStart}>
               Начать игру
-            </Button>
+            </StartButton>
           </Box>
         )}
         {isGameStarted && !isGameFinished && (
@@ -94,17 +86,14 @@ function App() {
               <Timer
                 isRunning={isGameRunning}
                 onTimeUpdate={setTimerValue}
-                shouldReset={shouldReset}
               />
-              <Button variant="contained" size="small" onClick={handleGameRestart}>
+              <Button variant="contained" size="small" onClick={handleExitGame}>
                 Выйти
               </Button>
             </Box>
             <GameBoard
               cards={cards}
               onGameFinish={handleGameFinish}
-              onFirstClick={handleFirstClick}
-              shouldReset={shouldReset}
             />
           </>
         )}
