@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Card from '../Card/Card';
-import generateCards from '../../utils/generateCards';
+
 
 function GameBoard({ cards, onGameFinish }) {
   const [openCards, setOpenCards] = useState([]);
