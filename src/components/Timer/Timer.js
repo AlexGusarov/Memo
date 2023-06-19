@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
 
-function Timer({ isRunning, onTimeUpdate, shouldReset }) {
+function Timer({ isRunning, onTimeUpdate, shouldReset, onReset }) {
   const [time, setTime] = useState(0);
 
-  useEffect(() => {
-    if (shouldReset || !isRunning) {
-      setTime(0);
-    }
-  }, [shouldReset, isRunning]);
-
+  // This effect handles the timer logic
   useEffect(() => {
     let interval;
     if (isRunning) {
@@ -24,12 +19,20 @@ function Timer({ isRunning, onTimeUpdate, shouldReset }) {
     };
   }, [isRunning, time, onTimeUpdate]);
 
+  // This effect handles the reset
+  useEffect(() => {
+    if (shouldReset) {
+      setTime(0);
+      onTimeUpdate(0); // To ensure the parent state also gets updated
+      onReset(); // Notify the parent that the reset is complete
+    }
+  }, [shouldReset, onTimeUpdate, onReset]);
+
   return (
     <div>
       <p>Время: {time}</p>
     </div>
   );
 }
-
 
 export default Timer;
