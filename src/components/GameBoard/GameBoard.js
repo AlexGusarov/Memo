@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
+import { styled } from '@mui/system';
 import Card from '../Card/Card';
 
 
@@ -7,6 +8,8 @@ function GameBoard({ cards, onGameFinish }) {
   const [openCards, setOpenCards] = useState([]);
   const [cardsState, setCardsState] = useState([]);
   const [shouldClose, setShouldClose] = useState(false);
+  const [matchedCards, setMatchedCards] = useState([]);
+
 
   useEffect(() => {
     setCardsState(cards);
@@ -32,6 +35,15 @@ function GameBoard({ cards, onGameFinish }) {
   }, [shouldClose, openCards]);
 
   useEffect(() => {
+    if (matchedCards.length > 0) {
+      const timer = setTimeout(() => {
+        setMatchedCards([]);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [matchedCards]);
+
+  useEffect(() => {
     if (cardsState.length > 0 && cardsState.every((card) => card.isOpen)) {
       // Все карточки открыты, игра завершена
       onGameFinish();
@@ -53,6 +65,7 @@ function GameBoard({ cards, onGameFinish }) {
         if (newOpenCards[0].image !== newOpenCards[1].image) {
           setShouldClose(true);
         } else {
+          setMatchedCards((prev) => [...prev, newOpenCards[0].id, newOpenCards[1].id]);
           setOpenCards([]);
         }
       }
@@ -76,6 +89,7 @@ function GameBoard({ cards, onGameFinish }) {
             contentImageSrc={card.image}
             isOpen={card.isOpen}
             onCardClick={() => handleCardClick(card)}
+            matched={matchedCards.includes(card.id)}
           />
         </Grid>
       ))}

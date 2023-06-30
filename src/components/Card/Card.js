@@ -3,9 +3,11 @@ import { Flipper, Flipped } from 'react-flip-toolkit';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 import coverImageSrc from '../../images/cardCover.png';
+import { animated } from 'react-spring';
+import Glow from '../Glow/Glow';
 
 
-function Card({ id, contentImageSrc, isOpen, onCardClick }) {
+function Card({ id, contentImageSrc, isOpen, onCardClick, matched }) {
   const [isFlipped, setIsFlipped] = useState(isOpen);
 
   useEffect(() => {
@@ -32,20 +34,25 @@ function Card({ id, contentImageSrc, isOpen, onCardClick }) {
         onClick={handleClick}
       >
         <Flipped flipId="card">
-          {flipped => (
-            <CardMedia
-              component="img"
-              alt="Cover"
-              image={isFlipped ? contentImageSrc : coverImageSrc}
-              sx={{
-                width: '100%',
-                height: '100%',
-                borderRadius: 2,
-                transform: `rotateY(${flipped ? 180 : 0}deg)`,
-                transition: 'transform 0.8s'
-              }}
-            />
-          )}
+          {(flipped) =>
+            <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+              {matched && <Glow />}
+              <CardMedia
+                component="img"
+                alt="Cover"
+                image={isFlipped ? contentImageSrc : coverImageSrc}
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 2,
+                  transform: `rotateY(${flipped ? 180 : 0}deg)`,
+                  transition: 'transform 0.8s, box-shadow 1s',
+                  position: 'relative',
+                  zIndex: 1
+                }}
+              />
+            </Box>
+          }
         </Flipped>
       </Box>
     </Flipper>

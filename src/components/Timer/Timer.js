@@ -1,7 +1,20 @@
 import { useState, useEffect } from "react";
+import { Box } from "@mui/material";
+import { styled } from '@mui/system';
 
 function Timer({ isRunning, onTimeUpdate, shouldReset, onReset }) {
   const [time, setTime] = useState(0);
+
+  const TimerBox = styled(Box)({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000',
+    color: '#fff',
+    borderRadius: '50px',
+    width: '150px',
+    height: '50px',
+  })
 
   // This effect handles the timer logic
   useEffect(() => {

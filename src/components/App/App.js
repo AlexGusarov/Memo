@@ -36,6 +36,10 @@ function App() {
   const StartButton = styled(Button)({
     fontSize: '1.1rem',
     padding: '1rem 2rem',
+    position: 'fixed',
+    bottom: '25%',
+    left: '50%',
+    transform: 'translateX(-50%)'
   });
 
   const shuffleCards = (cards) => {
