@@ -15,7 +15,9 @@ function Timer({ isRunning, onTimeUpdate, shouldReset, onReset }) {
     width: '50px',
     height: '50px',
     fontSize: '18px',
-    boxShadow: 'inset 0px 0px 10px 5px rgba(207, 181, 59, 0.5)'
+    boxShadow: 'inset 0px 0px 10px 5px rgba(207, 181, 59, 0.5)',
+    position: 'relative',
+    transform: 'translateX(-50px)'
   })
 
   useEffect(() => {

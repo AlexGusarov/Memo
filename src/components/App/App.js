@@ -77,15 +77,22 @@ function App() {
           <Typography variant="h1">Memo</Typography>
         </Box>
         {!isGameStarted && (
-          <Box display="flex" justifyContent="center" mt={10}>
+          <Box display="flex" justifyContent="center" mt={10} >
             <StartButton variant="contained" size="large" onClick={handleGameStart}>
               Начать игру
             </StartButton>
           </Box>
         )}
         {isGameStarted && !isGameFinished && (
-          <>
-            <Box display="flex" justifyContent="space-between" gap="30px" mt={2} marginBottom="20px">
+
+          <Box sx={{ p: 2 }}>
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              gap="30px"
+              mt={2}
+              marginBottom="20px"
+            >
               <FormControlLabel
                 control={
                   <Switch
@@ -129,7 +136,10 @@ function App() {
               cards={cards}
               onGameFinish={handleGameFinish}
             />
-          </>
+          </Box>
+
+
+
         )}
         {isGameFinished && (
           <>
