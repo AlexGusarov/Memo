@@ -6,6 +6,17 @@ import { arrayOf12CatCards, arrayOf12DogCards } from '../../utils/constants';
 import Timer from '../Timer/Timer';
 import { theme } from '../../utils/constants';
 
+const StyledLabel = styled(Typography)(({ theme, isCat }) => ({
+  position: 'absolute',
+  left: '0px',
+  top: '-15px',
+  borderBottom: `2px solid ${!isCat ? theme.palette.primary.main : theme.palette.secondary.main}`,
+}));
+
+const StyledFormControlLabel = styled(FormControlLabel)({
+  position: 'relative',
+
+});
 
 function App() {
   const [isGameStarted, setIsGameStarted] = React.useState(false);
@@ -93,7 +104,7 @@ function App() {
               mt={2}
               marginBottom="20px"
             >
-              <FormControlLabel
+              <StyledFormControlLabel
                 control={
                   <Switch
                     checked={isCat}
@@ -116,11 +127,12 @@ function App() {
                       },
                     }}
                   />
-
                 }
-                label={<Typography variant="body1" fontFamily="Inter, Arial, sans-serif">
-                  {isCat ? 'Кошарики' : 'Пёсики'}
-                </Typography>}
+                label={
+                  <StyledLabel isCat={isCat} variant="body1" fontFamily="Inter, Arial, sans-serif">
+                    {isCat ? 'Кошарики' : 'Пёсики'}
+                  </StyledLabel>
+                }
               />
               <Timer
                 isRunning={isGameRunning}
