@@ -1,27 +1,11 @@
 import React from 'react';
-import { Container, Typography, Box, Button, ThemeProvider, createTheme, Switch, FormControlLabel } from '@mui/material';
+import { Container, Typography, Box, Button, ThemeProvider, Switch, FormControlLabel } from '@mui/material';
 import { styled } from '@mui/system';
 import GameBoard from '../GameBoard/GameBoard';
 import { arrayOf12CatCards, arrayOf12DogCards } from '../../utils/constants';
 import Timer from '../Timer/Timer';
+import { theme } from '../../utils/constants';
 
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#305A4A',
-    },
-    secondary: {
-      main: '#CFB53B',
-    },
-  },
-  typography: {
-    fontFamily: 'Inter, sans-serif',
-    h1: {
-      color: '#305A4A',
-    },
-  },
-});
 
 function App() {
   const [isGameStarted, setIsGameStarted] = React.useState(false);

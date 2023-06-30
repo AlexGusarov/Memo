@@ -10,9 +10,8 @@ import dog3 from '../images/dog3.jpg';
 import dog4 from '../images/dog4.jpg';
 import dog5 from '../images/dog5.jpg';
 import dog6 from '../images/dog6.jpg';
-
-
 import generateCards from './generateCards';
+import { createTheme } from '@mui/material';
 
 const imagesCats = [image1, image2, image3, image4, image5, image6];
 
@@ -23,3 +22,21 @@ const imagesDogs = [dog1, dog2, dog3, dog4, dog5, dog6];
 
 export const arrayOf8DogCards = generateCards(4, imagesDogs);
 export const arrayOf12DogCards = generateCards(6, imagesDogs);
+
+
+export const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#305A4A',
+    },
+    secondary: {
+      main: '#CFB53B',
+    },
+  },
+  typography: {
+    fontFamily: 'Inter, sans-serif',
+    h1: {
+      color: '#305A4A',
+    },
+  },
+});
