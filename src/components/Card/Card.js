@@ -3,7 +3,6 @@ import { Flipper, Flipped } from 'react-flip-toolkit';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 import coverImageSrc from '../../images/cardCover.png';
-import { animated } from 'react-spring';
 import Glow from '../Glow/Glow';
 
 
