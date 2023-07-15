@@ -17,12 +17,12 @@ Memo - это игра для тренировки памяти, в которо
 1. Склонируйте репозиторий:
 
    ```
-   git clone https://github.com/yourusername/memory-game.git
+   git clone https://github.com/AlexGusarov/Memo.git
    ```
 2. Перейдите в директорию проекта:
 
    ```
-   cd memory-game
+   cd memo
    ```
 3. Установите зависимости:
 
