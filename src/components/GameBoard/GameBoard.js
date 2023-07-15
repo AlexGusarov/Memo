@@ -80,8 +80,8 @@ function GameBoard({ cards, onGameFinish }) {
       alignContent="center"
       wrap="wrap"
     >
-      {cardsState.map((card, index) => (
-        <Grid item xs={3} key={index}>
+      {cardsState.map((card) => (
+        <Grid item sm={4} md={3} key={card.id}>
           <Card
             id={card.id}
             contentImageSrc={card.image}
