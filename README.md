@@ -1,6 +1,5 @@
 # Memo
-
-![Memory Game Screenshot](./src/images/screenshot-game.png)
+<img src="./src/images/screenshot-game.png" width="50%" height="50%" alt="Memo Game screenshot" />
 
 ## Обзор 
 Memo - это игра для тренировки памяти, в которой вашей задачей является открыть парные карточки за минимальное количество попыток. Проект создан с использованием React, React Hooks и Material-UI для современного и отзывчивого интерфейса. 
