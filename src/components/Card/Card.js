@@ -9,6 +9,8 @@ import Glow from '../Glow/Glow';
 function Card({ id, contentImageSrc, isOpen, onCardClick, matched }) {
   const [isFlipped, setIsFlipped] = useState(isOpen);
 
+
+
   useEffect(() => {
     setIsFlipped(isOpen);
   }, [isOpen]);
@@ -23,8 +25,8 @@ function Card({ id, contentImageSrc, isOpen, onCardClick, matched }) {
     <Flipper flipKey={isFlipped}>
       <Box
         sx={{
-          width: 100,
-          height: 150,
+          width: { xs: 70, sm: 100 },
+          height: { xs: 105, sm: 150 },
           position: 'relative',
           cursor: 'pointer',
           borderRadius: 2,
