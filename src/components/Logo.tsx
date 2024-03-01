@@ -1,9 +1,8 @@
+import React from 'react';
 import logo from '../images/Memo-logo.png';
 
-function Logo() {
-  return (
+const Logo = () =>  (
     <img src={logo} alt="Memo" />
-  )
-}
+  );
 
 export default Logo;

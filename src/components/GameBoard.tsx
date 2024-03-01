@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import Grid from '@mui/material/Grid';
-import Card from '../Card/Card';
+import React, { useState, useEffect } from "react";
+import Grid from "@mui/material/Grid";
+import Card,  {CardProps}  from "./Card";
 
-function GameBoard({ cards, onGameFinish }) {
-  const [openCards, setOpenCards] = useState([]);
-  const [cardsState, setCardsState] = useState([]);
+interface GameBoardProps {
+  cards: CardProps[];
+  onGameFinish: () => void;
+}
+
+const GameBoard = ({ cards, onGameFinish }:GameBoardProps ) => {
+  // Теперь тип для openCards и cardsState явно указывает на массив объектов CardProps
+  const [openCards, setOpenCards] = useState<CardProps[]>([]);
+  const [cardsState, setCardsState] = useState<CardProps[]>(cards);
   const [shouldClose, setShouldClose] = useState(false);
-  const [matchedCards, setMatchedCards] = useState([]);
-
-
+  const [matchedCards, setMatchedCards] = useState<number[]>([]); // Если matchedCards хранит идентификаторы
   useEffect(() => {
     setCardsState(cards);
   }, [cards]);
-
 
   useEffect(() => {
     if (shouldClose) {
@@ -30,6 +33,7 @@ function GameBoard({ cards, onGameFinish }) {
       }, 1000);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [shouldClose, openCards]);
 
   useEffect(() => {
@@ -39,6 +43,7 @@ function GameBoard({ cards, onGameFinish }) {
       }, 1000);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [matchedCards]);
 
   useEffect(() => {
@@ -48,8 +53,7 @@ function GameBoard({ cards, onGameFinish }) {
     }
   }, [cardsState, onGameFinish]);
 
-
-  const handleCardClick = (card) => {
+  const handleCardClick = (card: CardProps) => {
     if (openCards.length < 2 && !card.isOpen) {
       const newOpenCards = [...openCards, card];
       setOpenCards(newOpenCards);
@@ -60,10 +64,14 @@ function GameBoard({ cards, onGameFinish }) {
       );
 
       if (newOpenCards.length === 2) {
-        if (newOpenCards[0].image !== newOpenCards[1].image) {
+        if (newOpenCards[0].contentImageSrc !== newOpenCards[1].contentImageSrc) {
           setShouldClose(true);
         } else {
-          setMatchedCards((prev) => [...prev, newOpenCards[0].id, newOpenCards[1].id]);
+          setMatchedCards((prev) => [
+            ...prev,
+            newOpenCards[0].id,
+            newOpenCards[1].id,
+          ]);
           setOpenCards([]);
         }
       }
@@ -84,7 +92,7 @@ function GameBoard({ cards, onGameFinish }) {
         <Grid item sm={4} md={3} key={card.id}>
           <Card
             id={card.id}
-            contentImageSrc={card.image}
+            contentImageSrc={card.contentImageSrc}
             isOpen={card.isOpen}
             onCardClick={() => handleCardClick(card)}
             matched={matchedCards.includes(card.id)}

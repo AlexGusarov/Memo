@@ -1,9 +1,10 @@
+import React from 'react';
 import { animated, useSpring } from 'react-spring';
 
 function Glow() {
   const props = useSpring({
     from: { opacity: 0 },
-    to: async (next, cancel) => {
+    to: async (next) => {
       while (1) {
         await next({ opacity: 1 });
         await next({ opacity: 0 });

@@ -1,22 +1,28 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
-import coverImageSrc from '../../images/cardCover.png';
-import Glow from '../Glow/Glow';
+import coverImageSrc from '../images/cardCover.png';
+import Glow from './Glow';
+
+export interface CardProps {
+  id: number;
+  contentImageSrc: string;
+  onCardClick?: (id: number) => void;
+  matched: boolean;
+  isOpen: boolean;
+}
 
 
-function Card({ id, contentImageSrc, isOpen, onCardClick, matched }) {
+const Card = ({ id, contentImageSrc, isOpen, onCardClick, matched }: CardProps) => {
   const [isFlipped, setIsFlipped] = useState(isOpen);
-
-
 
   useEffect(() => {
     setIsFlipped(isOpen);
   }, [isOpen]);
 
   const handleClick = () => {
-    if (!isFlipped) {
+    if (!isFlipped &&  onCardClick) {
       onCardClick(id);
     }
   };

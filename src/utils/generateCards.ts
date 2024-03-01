@@ -1,9 +1,10 @@
-function generateCards(cardPairs, images) {
+const generateCards = (cardPairs: number, images: string[]) => {
   let cards = [];
   for (let i = 0; i < cardPairs; i++) {
     // Создаем пару карт с одинаковыми изображениями
-    const card1 = { id: i * 2, image: images[i % images.length], isOpen: false };
-    const card2 = { id: i * 2 + 1, image: images[i % images.length], isOpen: false };
+    const card1 = { id: i * 2, contentImageSrc: images[i % images.length], isOpen: false, matched: false };
+    const card2 = { id: i * 2 + 1, contentImageSrc: images[i % images.length], isOpen: false, matched: false };
+    
 
     // Добавляем пару в массив карт
     cards.push(card1, card2);

@@ -1,9 +1,16 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { styled } from '@mui/system';
 
+interface TimerProps {
+  isRunning: boolean;
+  shouldReset: boolean;
+  onTimeUpdate: (time: number) => void;
+  onReset: () => void;
 
-function Timer({ isRunning, onTimeUpdate, shouldReset, onReset }) {
+}
+
+function Timer({ isRunning, onTimeUpdate, shouldReset, onReset }: TimerProps) {
   const [time, setTime] = useState(0);
 
   const TimerBox = styled(Box)({
@@ -19,7 +26,7 @@ function Timer({ isRunning, onTimeUpdate, shouldReset, onReset }) {
   })
 
   useEffect(() => {
-    let interval;
+    let interval:ReturnType<typeof setInterval>;
     if (isRunning) {
       interval = setInterval(() => {
         const newTime = time + 1;
