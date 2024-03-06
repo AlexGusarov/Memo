@@ -5,6 +5,7 @@ function Glow() {
   const props = useSpring({
     from: { opacity: 0 },
     to: async (next) => {
+        // eslint-disable-next-line no-constant-condition
       while (1) {
         await next({ opacity: 1 });
         await next({ opacity: 0 });
@@ -14,6 +15,7 @@ function Glow() {
 
   return (
     <animated.div
+    data-testid="glow-effect"
       style={{
         ...props,
         width: '100%',

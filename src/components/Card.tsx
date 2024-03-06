@@ -27,9 +27,12 @@ const Card = ({ id, contentImageSrc, isOpen, onCardClick, matched }: CardProps) 
     }
   };
 
+  const testIdState = isOpen ? 'opened' : 'closed';
+
   return (
     <Flipper flipKey={isFlipped}>
       <Box
+         data-testid={`card-${id}-${testIdState}`}
         sx={{
           width: { xs: 70, sm: 100 },
           height: { xs: 105, sm: 150 },
@@ -40,9 +43,12 @@ const Card = ({ id, contentImageSrc, isOpen, onCardClick, matched }: CardProps) 
         }}
         onClick={handleClick}
       >
-        <Flipped flipId="card">
+        <Flipped flipId={`card-${id}`}>
+
           {(flipped) =>
-            <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+            <Box 
+         
+            sx={{ position: 'relative', width: '100%', height: '100%' }}>
               {matched && <Glow />}
               <CardMedia
                 component="img"
