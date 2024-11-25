@@ -4,7 +4,7 @@
 
 ## Review
 
-**Memo** is a memory training game. Find all the paired cards with pictures of cute cats or dogs while racing against the clock. The game is adapted for various devices and provides convenient gameplay on screens of any size..
+**Memo** is a memory training game. Find all the paired cards with pictures of cute cats or dogs while racing against the clock. The game is adapted for various devices and provides convenient gameplay on screens of any size.
 
 ## Play online
 
