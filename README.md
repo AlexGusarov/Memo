@@ -2,54 +2,44 @@
 
 ![Memo Game screenshot](./src/images/screenshot-game.png#center)
 
-## Обзор
+## Review
 
-**Memo** — игра на тренировку памяти. Найдите все парные карточки с изображениями милых кошек или собак, соревнуясь на время. Игра адаптирована под различные устройства и обеспечивает удобный игровой процесс на экранах любого размера.
+**Memo** is a memory training game. Find all the paired cards with pictures of cute cats or dogs while racing against the clock. The game is adapted for various devices and provides convenient gameplay on screens of any size..
 
-## Играть онлайн
+## Play online
 
-Испытайте свою память прямо сейчас: [Играть в Memo](https://memorium-card.netlify.app/).
+Test your memory now: [Играть в Memo](https://memorium-card.netlify.app/).
 
-## Технологии
+## Technologies
 
-Разработка велась на:
-- **React** — для интерактивного пользовательского интерфейса
-- **TypeScript** — добавляет типизацию, повышая надёжность кода
-- **Material-UI** — для стильного и адаптивного дизайна
-- **Jest** и **Testing Library** - для тестов
+- **React** — for interactive user interface
+- **TypeScript** — adds typing, increasing code reliability
+- **Material-UI** — for stylish and responsive design
+- **Jest** и **Testing Library** - for tests
 
-## Установка и запуск
-Чтобы запустить проект локально:
+## Installation and launch
+To run the project locally:
 
-1. Склонируйте репозиторий:
+1. Clone the repository:
 
    ```
    git clone https://github.com/AlexGusarov/Memo.git
    ```
-2. Перейдите в директорию проекта:
+2. Go to the project directory:
 
    ```
    cd memo
    ```
-3. Установите зависимости:
+3. Install dependencies:
 
    ```
    npm install
    ```
-4. Запустите проект:
+4. Run the project:
 
    ```
    npm start
    ```
-5. Откройте [http://localhost:3000](http://localhost:3000) для просмотра в браузере.
+5. Open [http://localhost:3000](http://localhost:3000) для просмотра в браузере.
 
-## Планы на будущее
 
-Собираюсь добавить следующие функции:
-
-- **Рейтинговая система**: Пользователи смогут соревноваться за место в таблице лидеров.
-- **Уровни сложности**: Будет добавлено несколько уровней сложности для улучшения игрового опыта.
-
-## Контактная информация
-
-Если у вас есть вопросы или предложения, пожалуйста, не стесняйтесь связаться со мной — radiogusarov@gmail.com.
