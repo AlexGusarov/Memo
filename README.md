@@ -8,7 +8,7 @@
 
 ## Play online
 
-Test your memory now: [Играть в Memo](https://memorium-card.netlify.app/).
+Test your memory now: [Play in Memo](https://memorium-card.netlify.app/).
 
 ## Technologies
 
@@ -40,6 +40,6 @@ To run the project locally:
    ```
    npm start
    ```
-5. Open [http://localhost:3000](http://localhost:3000) для просмотра в браузере.
+5. Open [http://localhost:3000](http://localhost:3000) to view in browser.
 
 
