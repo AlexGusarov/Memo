@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Container,
   Typography,
@@ -7,13 +7,13 @@ import {
   ThemeProvider,
   Switch,
   FormControlLabel,
-} from "@mui/material";
-import { styled, Theme } from "@mui/system";
-import GameBoard from "../GameBoard";
-import { CardProps } from "../Card";
-import { arrayOf12CatCards, arrayOf12DogCards } from "../../utils/constants";
-import Timer from "../Timer";
-import { theme } from "../../utils/constants";
+} from '@mui/material';
+import { styled, Theme } from '@mui/system';
+import GameBoard from '../GameBoard';
+import { CardProps } from '../Card';
+import { arrayOf12CatCards, arrayOf12DogCards } from '../../utils/constants';
+import Timer from '../Timer';
+import { theme } from '../../utils/constants';
 
 interface StyledLabelProps {
   theme?: Theme;
@@ -21,27 +21,27 @@ interface StyledLabelProps {
 }
 
 const StyledLabel = styled(Typography, {
-  shouldForwardProp: (prop) => prop !== 'isCat',
+  shouldForwardProp: prop => prop !== 'isCat',
 })<StyledLabelProps>(({ theme, isCat }) => ({
-  position: "absolute",
-  left: "0px",
-  top: "-15px",
+  position: 'absolute',
+  left: '0px',
+  top: '-15px',
   borderBottom: `2px solid ${
     !isCat ? theme.palette.primary.main : theme.palette.secondary.main
   }`,
 }));
 
 const StyledFormControlLabel = styled(FormControlLabel)({
-  position: "relative",
+  position: 'relative',
 });
 
 const StartButton = styled(Button)({
-  fontSize: "1.1rem",
-  padding: "1rem 2rem",
-  position: "fixed",
-  bottom: "25%",
-  left: "50%",
-  transform: "translateX(-50%)",
+  fontSize: '1.1rem',
+  padding: '1rem 2rem',
+  position: 'fixed',
+  bottom: '25%',
+  left: '50%',
+  transform: 'translateX(-50%)',
 });
 
 const App: React.FC = () => {
@@ -86,10 +86,13 @@ const App: React.FC = () => {
     setIsGameStarted(false);
   }, []);
 
-  const handleSwitchChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsCat(event.target.checked);
-    setShouldResetTimer(true);
-  }, []);
+  const handleSwitchChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsCat(event.target.checked);
+      setShouldResetTimer(true);
+    },
+    []
+  );
 
   useEffect(() => {
     if (isGameStarted) {
@@ -99,29 +102,29 @@ const App: React.FC = () => {
   }, [isCat, isGameStarted, handleGameRestart]);
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="sm">
-        <Box display="flex" justifyContent="center" alignItems="center" py={2}>
-          <Typography variant="h1">Memo</Typography>
+      <Container maxWidth='sm'>
+        <Box display='flex' justifyContent='center' alignItems='center' py={2}>
+          <Typography variant='h1'>Memo</Typography>
         </Box>
         {!isGameStarted && (
-          <Box display="flex" justifyContent="center" mt={10}>
+          <Box display='flex' justifyContent='center' mt={10}>
             <StartButton
-              variant="contained"
-              size="large"
+              variant='contained'
+              size='large'
               onClick={handleGameStart}
             >
-              Начать игру
+              Start the game
             </StartButton>
           </Box>
         )}
         {isGameStarted && !isGameFinished && (
           <Box sx={{ p: 2 }}>
             <Box
-              display="flex"
-              justifyContent="space-between"
-              gap="30px"
+              display='flex'
+              justifyContent='space-between'
+              gap='30px'
               mt={2}
-              marginBottom="20px"
+              marginBottom='20px'
             >
               <StyledFormControlLabel
                 control={
@@ -129,28 +132,28 @@ const App: React.FC = () => {
                     checked={isCat}
                     onChange={handleSwitchChange}
                     sx={{
-                      "&.Mui-checked": {
+                      '&.Mui-checked': {
                         color: isCat
                           ? theme.palette.primary.main
                           : theme.palette.secondary.main,
                       },
-                      "&.Mui-checked + .MuiSwitch-track": {
+                      '&.Mui-checked + .MuiSwitch-track': {
                         backgroundColor: isCat
                           ? theme.palette.primary.main
                           : theme.palette.secondary.main,
                       },
-                      "& .MuiSwitch-thumb": {
+                      '& .MuiSwitch-thumb': {
                         color: isCat
                           ? theme.palette.secondary.main
                           : theme.palette.primary.main,
                       },
-                      "&.MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track":
+                      '&.MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track':
                         {
                           backgroundColor: isCat
                             ? theme.palette.primary.main
                             : theme.palette.secondary.main,
                         },
-                      "&.MuiSwitch-colorSecondary.Mui-checked": {
+                      '&.MuiSwitch-colorSecondary.Mui-checked': {
                         color: isCat
                           ? theme.palette.primary.main
                           : theme.palette.secondary.main,
@@ -161,10 +164,10 @@ const App: React.FC = () => {
                 label={
                   <StyledLabel
                     isCat={isCat}
-                    variant="body1"
-                    fontFamily="Inter, Arial, sans-serif"
+                    variant='body1'
+                    fontFamily='Inter, Arial, sans-serif'
                   >
-                    {isCat ? "Кошарики" : "Пёсики"}
+                    {isCat ? 'Cats' : 'Dogs'}
                   </StyledLabel>
                 }
               />
@@ -174,8 +177,8 @@ const App: React.FC = () => {
                 shouldReset={shouldResetTimer}
                 onReset={handleTimerReset}
               />
-              <Button variant="contained" size="small" onClick={handleExitGame}>
-                Выйти
+              <Button variant='contained' size='small' onClick={handleExitGame}>
+                Exit
               </Button>
             </Box>
             <GameBoard cards={cards} onGameFinish={handleGameFinish} />
@@ -183,18 +186,18 @@ const App: React.FC = () => {
         )}
         {isGameFinished && (
           <>
-            <Box mt={4} mb={2} display="flex" justifyContent="center">
-              <Typography variant="body1" align="center">
-                Поздравляю! Твой результат: {finalTime}
+            <Box mt={4} mb={2} display='flex' justifyContent='center'>
+              <Typography variant='body1' align='center'>
+                Congratulations! Your result: {finalTime}
               </Typography>
             </Box>
-            <Box display="flex" justifyContent="center">
+            <Box display='flex' justifyContent='center'>
               <Button
-                variant="contained"
-                size="medium"
+                variant='contained'
+                size='medium'
                 onClick={handleGameRestart}
               >
-                Играть снова
+                Play again
               </Button>
             </Box>
           </>
@@ -202,6 +205,6 @@ const App: React.FC = () => {
       </Container>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

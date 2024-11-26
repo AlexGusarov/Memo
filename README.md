@@ -15,7 +15,7 @@ Test your memory now: [Play in Memo](https://memorium-card.netlify.app/).
 - **React** — for interactive user interface
 - **TypeScript** — adds typing, increasing code reliability
 - **Material-UI** — for stylish and responsive design
-- **Jest** и **Testing Library** - for tests
+- **Jest** and **Testing Library** - for tests
 
 ## Installation and launch
 To run the project locally:

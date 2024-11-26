@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
-import Grid from "@mui/material/Grid";
-import Card,  {CardProps}  from "./Card";
+import React, { useState, useEffect } from 'react';
+import Grid from '@mui/material/Grid';
+import Card, { CardProps } from './Card';
 
 interface GameBoardProps {
   cards: CardProps[];
   onGameFinish: () => void;
 }
 
-const GameBoard = ({ cards, onGameFinish }:GameBoardProps ) => {
-  // Теперь тип для openCards и cardsState явно указывает на массив объектов CardProps
+const GameBoard = ({ cards, onGameFinish }: GameBoardProps) => {
   const [openCards, setOpenCards] = useState<CardProps[]>([]);
   const [cardsState, setCardsState] = useState<CardProps[]>(cards);
   const [shouldClose, setShouldClose] = useState(false);
-  const [matchedCards, setMatchedCards] = useState<number[]>([]); // Если matchedCards хранит идентификаторы
+  const [matchedCards, setMatchedCards] = useState<number[]>([]);
   useEffect(() => {
     setCardsState(cards);
   }, [cards]);
@@ -20,8 +19,8 @@ const GameBoard = ({ cards, onGameFinish }:GameBoardProps ) => {
   useEffect(() => {
     if (shouldClose) {
       const timer = setTimeout(() => {
-        setCardsState((prevCards) =>
-          prevCards.map((card) => {
+        setCardsState(prevCards =>
+          prevCards.map(card => {
             if (card.id === openCards[0].id || card.id === openCards[1].id) {
               return { ...card, isOpen: false };
             }
@@ -47,8 +46,7 @@ const GameBoard = ({ cards, onGameFinish }:GameBoardProps ) => {
   }, [matchedCards]);
 
   useEffect(() => {
-    if (cardsState.length > 0 && cardsState.every((card) => card.isOpen)) {
-      // Все карточки открыты, игра завершена
+    if (cardsState.length > 0 && cardsState.every(card => card.isOpen)) {
       onGameFinish();
     }
   }, [cardsState, onGameFinish]);
@@ -57,17 +55,19 @@ const GameBoard = ({ cards, onGameFinish }:GameBoardProps ) => {
     if (openCards.length < 2 && !card.isOpen) {
       const newOpenCards = [...openCards, card];
       setOpenCards(newOpenCards);
-      setCardsState((prevCards) =>
-        prevCards.map((cardState) =>
+      setCardsState(prevCards =>
+        prevCards.map(cardState =>
           cardState.id === card.id ? { ...cardState, isOpen: true } : cardState
         )
       );
 
       if (newOpenCards.length === 2) {
-        if (newOpenCards[0].contentImageSrc !== newOpenCards[1].contentImageSrc) {
+        if (
+          newOpenCards[0].contentImageSrc !== newOpenCards[1].contentImageSrc
+        ) {
           setShouldClose(true);
         } else {
-          setMatchedCards((prev) => [
+          setMatchedCards(prev => [
             ...prev,
             newOpenCards[0].id,
             newOpenCards[1].id,
@@ -82,13 +82,13 @@ const GameBoard = ({ cards, onGameFinish }:GameBoardProps ) => {
     <Grid
       container
       spacing={2}
-      direction="row"
-      justifyContent="center"
-      alignItems="center"
-      alignContent="center"
-      wrap="wrap"
+      direction='row'
+      justifyContent='center'
+      alignItems='center'
+      alignContent='center'
+      wrap='wrap'
     >
-      {cardsState.map((card) => (
+      {cardsState.map(card => (
         <Grid item sm={4} md={3} key={card.id}>
           <Card
             id={card.id}
@@ -101,6 +101,6 @@ const GameBoard = ({ cards, onGameFinish }:GameBoardProps ) => {
       ))}
     </Grid>
   );
-}
+};
 
 export default GameBoard;
